@@ -1,0 +1,79 @@
+1.写样式定义越详细优先级越高
+   同一个类名，后面写的相同样式会覆盖前面的，页面呈现后面的样式
+   行内样式>内联样式>外部样式
+   id选择器>class选择器（不同元素id名称不能相同，跟js有关）
+2.字在图片外环绕的写法
+  <div class="one">
+		<img src="image/tempPic.png">
+        这块是放字的内容
+  </div>
+ 样式写法：
+           .one{
+			width:300px;
+			height:200px;
+			background:#f00;
+			overflow:hidden;   /*使溢出的字隐藏*/
+		}
+	   .one img{
+			width:80px;
+			height:80px;
+			float:left;        /*主要是给图片左浮动，使字环绕在图片周围*/
+			
+		}
+3.清除浮动（让父容器的高度随他里面的内容的变化而变化）
+  （1）overflow清除浮动
+       在父元素的样式里写overflow:hidden;(超出的隐藏)
+  （2）clear清除浮动
+        给子元素添加<div class="clear"></div>
+        style样式中写.clear{clear:both;}
+ 前两种不常用
+  （3）伪元素：  :after用来设置一些特殊的效果
+     用法：.one:after{content:xxhtml;color:red;}
+用after清除浮动
+    .one:after{
+         content:'';
+         clear:both;
+         display:block;
+         height:0;
+         visibility:hidden;
+       }
+4.行级元素(display:inline):宽高不起作用，可以连续横向排列（容器大小受内容大小的影响）
+  块级元素(diaplay:block)：宽高起作用，默认横向独占一行
+display:inline-block:以行级容器的形式来显示块级容器
+5.子容器的外边距有时会跑到父容器之外，怎么解决？
+   给子容器添加上float
+   给父容器加上overflow:hidden;
+6.visibility:hidden;/*在页面上占位置*/
+  diaplay:none;/*在页面上不占位置*/
+7.给行内元素添加float浮动变为块级元素
+8.相对定位与绝对定位
+    相对定位：相对于它原来的位置进行偏移，并且它原来的位置被保留
+  绝对定位：它原来的位置不被保留，它相对于最近的已经定位的祖先元素
+  当父容器是相对定位，子容器是绝对定位，子容器以父容器的左上角为原点进行定位
+9.:hover  整个css中，唯一只有交互特性的属性样式
+10.做静态页面的步骤
+  （1）拿到UI设计图，分析页面结构；
+  （2）css重置：在早期只有html，没有css，所以html默认都带有css的属性，所以在做页面时候，要把默认的css属性都去掉，这叫（reset.css）
+  （3）设计页面的文件结构
+    html
+    css:1>rest.css（css重置）
+        2>具体页面的css目录（index.css  /   product.css）
+        3>widget（页面小部件）
+        4>layout（页面的大的结构）
+        5>common.css（公共样式）
+    js:
+11.在同父级设置绝对定位的元素之间，会发生遮盖，可以给他们添加z-index属性
+  z-index越高层级越高
+
+
+
+
+
+
+
+
+
+
+
+
+
